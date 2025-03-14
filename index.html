@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz 7 Meses, Amor!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+
+    <div class="heart"></div>
+
+    <!-- Controle de música -->
+    <div class="music-control">
+        <audio id="background-music" loop>
+            <source src="nossamusica.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio HTML5.
+        </audio>
+        <button id="music-toggle" onclick="toggleMusic()">
+            <span id="music-icon">🔊</span>
+        </button>
+    </div>
+
+    <div class="hero">
+        <h1>Feliz 7 Meses, Meu Amor! 💖</h1>
+        <p id="typed-text"></p>
+        <a href="#historia" class="btn" onclick="mostrarPrimeiraImagem()">Eu te amo!</a>
+    </div>
+
+    <section id="historia">
+        <h2>Nossa História</h2>
+        <p>Desde o primeiro momento, eu soube que você era especial...</p>
+
+        <br><br><br><br>
+        
+        <div class="gallery">
+            <img id="preview-img" src="carta.png" alt="Nosso primeiro encontro" 
+                 onclick="mostrarTexto()" style="display: none;">
+        </div>
+
+        <div id="texto-section" class="texto-section" style="display: none;">
+            <h3>Nossa Jornada Juntos</h3>
+            <p>Paty Patinhas 🐾, meu grande amor!</p>
+            <p>Há sete meses atrás, nossas vidas se cruzaram de uma forma especial. Desde então, cada dia tem sido uma nova descoberta, um novo motivo para sorrir.
+                Tantos aprendizados, tantas coisas vivemos juntos. Fiz esse site como presente, pois sei que você gostou muito do joguinho do aniversário, e como uma forma de mostrar que não é um erro investir em mim
+                obrigado pelo curso de programação, fiz esse site com os aprendizados dele, quero que saiba que eu sempre me dedico nas coisas que me proponho, e me dedico demais, com o maior prazer, a voce!
+                Voce é o amor da minha vida! Obrigado por todas as coisas que vivemos nesses 7 meses, de me ensinar a amar, de me ensinar sobre as emoções, sobre dirigir, de me acolher, me ouvir, você esteve comigo
+                no meu pior momento e no meu melhor! Você é sim o amor da minha vida! Espero que goste deste presente! Foi feito de coração! Te amo meu amor! Feliz 7 meses para gente! E rumo aos 7 anos, até quando tivermos 77 anos juntinhos de cabelo branco!
+            </p>
+            <button class="btn" onclick="mostrarGaleria()">Ver nossas fotos</button>
+        </div>
+
+        <div id="lightbox" class="lightbox">
+            <span onclick="closeLightbox()" class="close">&times;</span>
+            <img id="lightbox-img">
+            <p id="lightbox-text"></p>
+            <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+            <button class="next" onclick="changeImage(1)">&#10095;</button>
+        </div>
+
+    </section>
+
+    <script>
+        // Animação do texto digitado
+        var typed = new Typed("#typed-text", {
+            strings: ["Hoje comemoramos nosso amor!", "Que venham muitos mais meses!", "Feliz 7 meses Paty Patinhas!"],
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: true
+        });
+
+        let musicPlaying = false;
+        const music = document.getElementById("background-music");
+        const musicIcon = document.getElementById("music-icon");
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                music.pause();
+                musicIcon.textContent = "🔇";
+            } else {
+                music.play();
+                musicIcon.textContent = "🔊";
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        document.body.addEventListener('click', function() {
+            if (!musicPlaying) {
+                music.volume = 0.5; // Volume a 50%
+                music.play().catch(e => console.error("Erro ao iniciar música:", e));
+                musicPlaying = true;
+            }
+        }, { once: true });
+
+        function mostrarPrimeiraImagem() {
+            document.getElementById("texto-section").style.display = "none";
+            document.getElementById("preview-img").style.display = "block";
+        }
+
+        function mostrarTexto() {
+            document.getElementById("preview-img").style.display = "none";
+            document.getElementById("texto-section").style.display = "block";
+        }
+
+        function mostrarGaleria() {
+            openLightbox(0);
+        }
+
+        const images = [
+    { src: "img1.jpeg", text: "Minha namorada quase corinthiana! 💑" },
+    { src: "img2.jpeg", text: "Obrigado por compartilhar seus momentos comigo" },
+    { src: "img3.jpeg", text: "Todos temos muito orgulho de você!" },
+    { src: "img4.jpeg", text: "Nada mais gostoso que pegar bixinhos com o Caio (mesmo você surtando com o coitadinho as vezes!)" },
+    { src: "img5.jpeg", text: "Ele com certeza gosta muito da Tia Paty! E te ama muito também!" },
+    { src: "img6.jpeg", text: "Pra ser honesto, eu não sei qual sua pira de tirar fotos minhas dormindo! KKKKKK Ainda mais umas que nem tem tanto sentido :v" },
+    { src: "img7.jpeg", text: "Esse dia foi engraçado, você toda putassa tendo que comprar decoração e eu me divertindo com meu pirulito de et 👽" },
+    { src: "img8.jpeg", text: "Horroroso de ruim KKKKKKKK" },
+    { src: "img9.jpeg", text: "Sua pira de roubar meus moletons! E por você, eu te dou todos o que você quiser!" },
+    { src: "img10.jpeg", text: "Não vejo hora de te colocar na minha garupa! Quero andar muuuuito ainda com você na minha motinha" },
+    { src: "img11.jpeg", text: "Toda sorridente! Eu amo seu sorriso e seu brilho! Que você conquiste todas as estradas dessa vida, meu amor! 🩷" },
+    { src: "img12.jpeg", text: "Essa daqui é só pq seu dedo tá bizarrezimo mesmo rsrs" },
+    { src: "img13.jpeg", text: "Eu amo não fazer nada com você! É uma delícia compartilhar o ócio ao seu lado" },
+    { src: "img14.jpeg", text: "Essa eu coloquei pra eu lembrar de separar sua comidinha do jeito que você gosta, e nunca esquecer dos ovinhos e coraçõezinhos" },
+    { src: "img15.jpeg", text: "Mesmo distante de você, tento cuidar e estar presente do jeito que posso!" },
+    { src: "img16.jpeg", text: "\"Você pediu, chegou!\" E como eu pedi a Deus uma namorada como você!" },
+    { src: "img17.jpeg", text: "Não só seu namorado, ou sua chefe, mas seus clientes também tem muito orgulho e carinho por você!" },
+    { src: "img18.jpeg", text: "Você é digna de todo o amor deste mundo!" },
+    { src: "img19.jpeg", text: "E não importa o quanto você fique no Sol, o máximo é virar um camarãozinho todo vermeinha, coitada kkkkk" },
+    { src: "img20.jpeg", text: "Tenho muito orgulho de você, minha princesa! A melhor coordenadora de território que existe!" },
+    { src: "img21.jpeg", text: "Lindissima (essa aqui é só pq eu te acho linda msm)" },
+    { src: "img22.jpeg", text: "mai melodi, você não sabe o prazer que é te dar presentinhos, e você não sabe como me dói não conseguir no momento fazer mais por você... Eu quero te dar o mundo!" },
+    { src: "img23.jpeg", text: "Ops... parece que alguem bateu seu carro no poste..." },
+    { src: "img24.jpeg", text: "Os dois lindões todo felizoes nem imaginava que eu ia arrebentar a traseira do versa no poste KKKKKKKK" },
+    { src: "img25.jpeg", text: "Quero te acompanhar em todas as veredas dessa vida!" },
+    { src: "img26.jpeg", text: "Eu e meu amigo Yoru!" },
+    { src: "img27.jpeg", text: "Toda doidinha fazendo careta!!! 🤪" },
+    { src: "img28.jpeg", text: "O sorvete que dá brisa!" },
+    { src: "img29.jpeg", text: "Como eu amo seu sorriso! E como seu beijinho é mais doce que qualquer sorvete desse planeta!" },
+    { src: "img30.jpeg", text: "Minha motorista preferida! Eu amo as fotinhas espontaneas que vc me manda durante o dia! Sinto falta quando nao tenho, elas fazem meu dia meu amor!" },
+    { src: "img31.jpeg", text: "Kikinha... Obrigado, do fundo do meu coração, por ter passado esse momento comigo... :/" },
+    { src: "img32.jpeg", text: "Yooooruuuu ('aiiin murilo nao pode ter um favorito...')" },
+    { src: "img33.jpeg", text: "Esses dois serezinhos, esses piculinos, não poderiam escolher uma mãe melhor! Você é a melhor mamãe de todas! Te amamoooos!" },
+    { src: "img34.jpeg", text: "Nois dois gatao aq hehe" },
+    { src: "img35.jpeg", text: "Obrigado por ter ido comigo no meu exame da auto escola! Foi muito importante mesmo pra mim" },
+    { src: "img36.jpeg", text: "De dedinho?" },
+    { src: "img37.jpeg", text: "De dedinho! Sempre!" },
+    { src: "img38.jpeg", text: "Minha garota propaganda favorita do Subway e eu acho sensacional você saber o dia que tem o frango grelhado X Y com o molho A B C!! É uma dedicação ao subway!" },
+    { src: "img39.jpeg", text: "Vc picrew!! Não tem obra de arte que consiga te reproduzir, pois mesmo que tentassem, sua perfeição só garante que foi Deus quem te fez!" },
+    { src: "img40.jpeg", text: " Oiaaa nois e o titico!" },
+    { src: "img41.jpeg", text: "A filha da puta consegue ficar bonita até na CNH!!!!" },
+    { src: "img42.jpeg", text: "Eu e meus queridões no processo de amigamento!" },
+    { src: "img43.jpeg", text: "Por algum motivo você adora tirar fotos minhas dormindo!" },
+    { src: "img44.jpeg", text: "Eu e o Sora!" },
+    { src: "img45.jpeg", text: "Você, sua sogra que te ama e o carnicento do boxinho!" },
+    { src: "img46.jpeg", text: "Eu amo quando você dorme comigo, ainda mais depois de dar um ptzao no ze castanha!" },
+    { src: "img47.jpeg", text: "Minutos antes de gorfar tudo na minha mao kkkkkk" },
+    { src: "img48.jpeg", text: "Que venham muitas mais viagens para nós!" },
+    { src: "img49.jpeg", text: "Esse dia foi incrível, como eu amo te amar!" },
+    { src: "img50.jpeg", text: "O nois na balsa de santos" },
+    { src: "img51.jpeg", text: "Eu acho incrível você entender de carros! E sempre é um prazer aprender com você!" },
+    { src: "img52.jpeg", text: "te amo! acho mt aesthetic vc ser uma autozone girl!" },
+    { src: "img53.jpeg", text: "Esse dia foi sensacional! Que venha muitas outras viagens a praia pra gente" },
+    { src: "img54.jpeg", text: "Lindona! No topo do prédio! (literalmente)" },
+    { src: "img55.jpeg", text: "toda buchechudinha, coisa mai linda minha! <3" },
+    { src: "img56.jpeg", text: "Eu amo essa fotinha nossa" },
+    { src: "img57.jpeg", text: "Obrigado por velejar comigo nesse grande oceano que é a vida!" },
+    { src: "img58.jpeg", text: "essa aq é pq eu to bonito rsrs" },
+    { src: "img59.jpeg", text: "mato" },
+    { src: "img60.jpeg", text: "Eu amo explorar novos lugares com você!" },
+    { src: "img61.jpeg", text: "E um dia eu quero provar um maisumcafe com voce!" },
+    { src: "img62.jpeg", text: "Esse dia eu me diverti bastante! Amo ir ao shopping com voce! Amo cineminha e comprar roupinhas e cacarecos!" },
+    { src: "img63.jpeg", text: "O nois na renner" },
+    { src: "img64.jpeg", text: "Amor da minha vida!" },
+    { src: "img65.jpeg", text: "Minha foto favorita de todas! Você é a mulher mais linda que poderia existir!" },
+    { src: "img66.jpeg", text: "Como eu amo jogar joguinhos em call com vce, esse se nao me engano, é da época da republica" },
+    { src: "img67.jpeg", text: "Essa foto é engraçada! Porque eu pedi um fetuccini pq tem uma musica do froid que ele fala 'ela é a mafia italiana e vc é só um fetuccini', e pra mim é justamente isso, emquanto todas as outras pessoas são só um macarrão, vc pra mim é a italia inteira!" },
+    { src: "img68.jpeg", text: "Amo compartilhar o dia dia com vc!" },
+    { src: "img69.jpeg", text: "Como você tava linda nesse dia! Como eu te amo!" },
+    { src: "img70.jpeg", text: "Yoruuuuuu, ele também te ama muito!" },
+    { src: "img71.jpeg", text: "Eu e vc no lago no aniversario do Hugo, bixo, oq eu tava apaixonado nesse dia era brincadeira! Eu me sentia flutuando!" },
+    { src: "img72.jpeg", text: "Toda lindinha roubando meu moletom!" },
+    { src: "img73.jpeg", text: "Acho que eu repeti essa foto... rsrsrs" },
+    { src: "img74.jpeg", text: "Eu quero estar com você nos momentos mais comuns do dia, porque ainda assim, são especiais!" },
+    { src: "img75.jpeg", text: "O primeiro dia que eu fui na sua casa" },
+    { src: "img76.jpeg", text: "<3" },
+    { src: "img77.jpeg", text: "E acha que todas as mulheres morrem de amores por mim... - NIll" },
+    { src: "img78.jpeg", text: "Quero lembrar de voce em todos os momentos, e te trazer pequenos lampejos de felicidade!" },
+    { src: "img79.jpeg", text: "A saga da republica... só voce sabe o quanto vc sofreu mo, e como era importante pra mim quando a gnt conversava qnd eu chegava da faculdade, voce merece o melhor dessa vida!" },
+    { src: "img80.jpeg", text: "gatinhooo da raça titicooo (esse eh do cliente)" },
+    { src: "img81.jpeg", text: "Nessa foto você parece um quadro! É por isso que eu te dou valor!" },
+    { src: "img82.jpeg", text: "Obrigado por tudo..." },
+    { src: "img83.jpeg", text: "Obrigado... :'(" },
+    { src: "img84.jpeg", text: "Um brinde a mulher da minha vida!" },
+    { src: "img85.jpeg", text: "Calma, pera la! Que eu quero beijar essa gatinha antes da foto!" },
+    { src: "img86.jpeg", text: "Saiba que você nunca está sozinha, que você tem amigas, que você é cercada de pessoas que te amam, que te apoiam, e que te incentivam a crescer! Nunca abandone elas!" },
+    { src: "img87.jpeg", text: "Seu pai é muito orgulhoso da mulher que você se tornou, independente, indo bem na carreira, morando sozinha, ele com certeza tem orgulho de você e te ama muito! Assim como seus sobrinhos, saiba que você é uma excelente tia e não tem do que se culpar!" },
+    { src: "img88.jpeg", text: "E que cacemos muitos animaizinhos juntos" },
+    { src: "img89.jpeg", text: "Obrigado por esse momento comigo... Acho que esse foi um dos momentos mais dolorosos que eu passei nos últimos meses, e você esteve ali comigo, do ínicio ao fim, obrigado mesmo, você é incrível!" },
+    { src: "img90.jpeg", text: "Toda cansadinha de ficar correndo pra lá e pra cá com a Kikinha e conhecendo um pouco do inferno que eu vivo no dia a dia kkk (mas ainda assim extremamente LINDA)" },
+    { src: "img91.jpeg", text: "Obrigado por me distrair na noite em que ela estava internada..." },
+    { src: "img92.jpeg", text: "Essa é uma das nossas fotos favoritas!" },
+    { src: "img93.jpeg", text: "Eu amei passar o natal com você, e que venha muitos mais natais!!!!" },
+    { src: "img94.jpeg", text: "Mo, se tem alguém que tem orgulho de quem você é, com certeza é sua mãe! Sua mãe te ama demais, ela fala toda contente de você, de como você aprendeu as coisinhas como das plantas, das flores, das frutinhas, de como não matar os animaizinhos, sempre saiba disso, do quanto sua mãe te ama!" },
+    { src: "img95.jpeg", text: "Aiaiai como nao amar vc??? Cuidando das unhas do jacaré aqui" },
+    { src: "img96.jpeg", text: "As garras do gaviao!!" },
+    { src: "img97.jpeg", text: "Por vc eu faço todas as palhacadas só pra te ver dar um risinho, msm que vc me chame de infantil e bobinho as vezes!" },
+    { src: "img98.jpeg", text: "Vc e seus 2 maiores amores!" },
+    { src: "img99.jpeg", text: "Obrigado por cuidar do Nero!" },
+    { src: "img100.jpeg", text: "Mo, vc tem excelentes amigas, nunca abandone elas, nem deixe de sair com elas, curte a vida!" },
+    { src: "img101.jpeg", text: "Oooh nois aquiii" },
+    { src: "img102.jpeg", text: " Linguinhaaaaa :P " },
+    { src: "img103.jpeg", text: " UAPs!!! Nessa epoca eu tava com hiperfoco em et e a gnt foi caçar et  " },
+    { src: "img104.jpeg", text: "Mo, que você continue encantando muitos clientes! Você é uma excelente profissional! Dedicada, prestativa, atenciosa, que você bata muitas e muitas e muitas metas! Você é foda!" },
+    { src: "img105.jpeg", text: "KKKKKKKKKKKKKKKKKKKKK ai mo oq vc riu flnd q eu sai feio nessa foto era sacanagem, botei aq só por meme" },
+    { src: "img106.jpeg", text: "euuuu e vcccccc no lagooooo dando comida pros peixinhos e patinhos" },
+    { src: "img107.jpeg", text: "Oh os pato!" },
+    { src: "img108.jpeg", text: "Eu amo quando vc dorme em mim!" },
+    { src: "img109.jpeg", text: "E quero cuidar de vc em todos os pts que vc der! Ainda mais agr q eu dirijo, pode beber a vontade! (esse aq n foi de bebida rs)" },
+    { src: "img110.jpeg", text: "A rainha da noite! O segundo dia mais especial foi quando você veio para minha vida, dia 09, o primeiro, quando você nasceu! me perdoa pelo creme... nunca foi minha intenção, eu nao sabia mesmo :T" },
+    { src: "img111.jpeg", text: "Que façamos muitos e muitos e muuuuuitos skin cares!!" },
+    { src: "img112.jpeg", text: "Seus pais te amam! Você é digna de amor, você é valiosissima! Nunca pense nada diferente disso! Voce é amada e quista!" },
+    { src: "img113.jpeg", text: "Oooh eu dirigino o pretinho cheio de medo kkkkk" },
+    { src: "img114.jpeg", text: "Definitivamente, a estrada é uma das partes mais marcantes do nosso namoro, quero viajar o mundo com você!" },
+    { src: "img115.jpeg", text: "Mais uma foto minha dorminhoco" },
+    { src: "img116.jpeg", text: "Eu vc e a kikinha" },
+    { src: "img117.jpeg", text: "Vc tem boas amigas mo, saiba disso, nunca se distancie delas" },
+    { src: "img118.jpeg", text: "Você é foda! Eu sinto muito orgulho de você, e que vc arrebente em muitos eventos!" },
+    { src: "img119.jpeg", text: "Eu sempre vo fazer paiaçada pra te agradar, msm a distancia!" },
+    { src: "img120.jpeg", text: "oiiaa eu de cara de sapo amassada" },
+    { src: "img121.jpeg", text: "oia vc parecendo um dedão do pé" },
+    { src: "img122.jpeg", text: "vc é a vet mais foda do planeta mo!" },
+    { src: "img123.jpeg", text: "obrigado por gostar tanto do nerinho" },
+    { src: "img124.jpeg", text: "" },
+    { src: "img125.jpeg", text: "babona!" },
+    { src: "img126.jpeg", text: "nesse dia eu comi 10 sache de maionese rs" },
+    { src: "img127.jpeg", text: "bibiiiii" },
+    { src: "img128.jpeg", text: "vc toda linda na cachoeira! vamos viajar por muuuuitas outras ainda!" },
+    { src: "img129.jpeg", text: "mds um lobisomem" },
+    { src: "img130.jpeg", text: "te amo meu amor!" },
+    { src: "img131.jpeg", text: "toda linda na trilha!" },
+    { src: "img132.jpeg", text: "frorzinha" },
+    { src: "img133.jpeg", text: "mais linda que essa paisagem, só o seu amor!" },
+    { src: "img134.jpeg", text: "amo colocar florzinhas no seu cabelinho!" },
+    { src: "img135.jpeg", text: "A mais fodinha da tecbio blz" },
+    { src: "img136.jpeg", text: "Lindona, razao do meu viver" },
+    { src: "img137.jpeg", text: "Princesa, Rainha, Meu Amor!" },
+    { src: "img138.jpeg", text: "Sapinho bebeee, quero q vc saiba, que as crianças e os animais te amam e são encantados com voce por conta da bondade do seu coração, vc tem um coraçãozinho de ouro meu amor!" },
+    { src: "img139.jpeg", text: "Toda focada me fazendo falsificar documento" },
+    { src: "img140.jpeg", text: "Yoruuuuuuu" },
+    { src: "img141.jpeg", text: "se em algum momento vc tiver duvidas do quanto eu te amo e o quanto eu te acho linda... é só vc lembrar do jeito que dilata minha pupila!" },
+    { src: "img142.jpeg", text: "Obrigado pelo Santiago! Um dos melhores presentes que você poderia me dar!!!" },
+];
+
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById("lightbox").style.display = "flex";
+            updateLightbox();
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            document.getElementById("lightbox-img").src = images[currentIndex].src;
+            document.getElementById("lightbox-text").innerText = images[currentIndex].text;
+        }
+    </script>
+
+</body>
+</html>
